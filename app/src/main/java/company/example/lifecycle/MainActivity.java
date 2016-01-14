@@ -1,5 +1,6 @@
 package company.example.lifecycle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,8 +9,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+
+    private EditText txt1;
+    private Button   btn1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                Intent intent= new Intent(getApplicationContext(),SecondActivity.class);
+                startActivity(intent);
+
             }
         });
     }
@@ -48,5 +58,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void enviar(View v){
+        txt1 = (EditText) findViewById(R.id.txt1);
+
+        Intent intent = new Intent(this,SecondActivity.class);
+        intent.putExtra("text",txt1.getText().toString());
+        startActivity(intent);
+
     }
 }
